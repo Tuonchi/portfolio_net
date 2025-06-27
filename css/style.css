@@ -199,7 +199,8 @@ form .btn {
 form .btn:hover {
   opacity: 0.9;
 }
-  /*=========intro greetings=======*/
+
+/*=========intro greetings=======*/
 .intro {
   max-width: 700px;
   margin: 1rem auto;
@@ -220,7 +221,6 @@ form .btn:hover {
   border-radius: 8px;
   box-shadow: 0 0 8px rgba(0,0,0,0.1);
 }
-
 
 /* ========== SOCIAL ICONS ========== */
 .social-icons {
@@ -316,10 +316,12 @@ footer {
   z-index: 1000;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
 }
+
 #theme-toggle i {
   display: inline-block;
   font-size: 1.2rem;
 }
+
 /* ========== RESPONSIVE ========== */
 @media (max-width: 768px) {
   nav ul {
@@ -343,5 +345,19 @@ footer {
   .social-icons {
     flex-direction: column;
     gap: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero {
+    padding: 2rem 1rem;
+  }
+
+  .skills {
+    padding: 1rem 0.5rem;
+  }
+
+  nav {
+    flex-direction: column;
   }
 }
