@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Contact | James Gichohi</title>
+  <link rel="stylesheet" href="../css/style.css" />
+</head>
+<body>
+  <header>
+    <nav>
+      <div class="logo">Tuonchi</div>
+      <ul>
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="projects.html">Projects</a></li>
+        <li><a href="contact.html" class="active">Contact</a></li>
+      </ul>
+      <button id="theme-toggle">🌓</button>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <h1>Contact Me</h1>
+    <p>Have a question, project, or just want to connect?</p>
+  </section>
+
+  <section class="skills">
+    <form id="contact-form" style="max-width: 500px; margin: auto;">
+      <div class="skill">
+        <label for="name">Name</label>
+        <input type="text" id="name" name="user_name" required />
+      </div>
+      <div class="skill">
+        <label for="email">Email</label>
+        <!-- ✅ Updated this to match EmailJS Reply To -->
+        <input type="email" id="email" name="email" required />
+      </div>
+      <div class="skill">
+        <label for="message">Message</label>
+        <textarea id="message" name="message" rows="5" required></textarea>
+      </div>
+      <button type="submit" class="btn">Send Message</button>
+      <p id="form-response" style="margin-top: 10px; font-weight: bold;"></p>
+    </form>
+  </section>
+
+  <section class="skills">
+    <h2>Connect with me</h2>
+    <div class="social-icons">
+      <a href="https://www.linkedin.com/in/james-maish-0a56b228b/" target="_blank">🔗 LinkedIn</a>
+      <a href="https://github.com/" target="_blank">💻 GitHub</a>
+      <a href="mailto:jamesgichohi4639@gmail.com">✉️ Email</a>
+    </div>
+  </section>
+
+  <footer>
+    <p>© 2025 James Gichohi | Designed by Tuonchi</p>
+  </footer>
+
+  <!-- EmailJS Script -->
+  <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+  <script>
+    (function() {
+      emailjs.init("nDdqSS-XtZzZCxwBw"); // ✅ Your EmailJS public key
+    })();
+
+    const form = document.getElementById("contact-form");
+    const responseEl = document.getElementById("form-response");
+    const submitBtn = form.querySelector("button");
+
+    form.addEventListener("submit", function(e) {
+      e.preventDefault();
+      responseEl.innerText = "⏳ Sending...";
+      responseEl.style.color = "black";
+      submitBtn.disabled = true;
+
+      emailjs.sendForm("service_bupdhso", "template_qziyt4x", this)
+        .then(function(response) {
+          responseEl.innerText = "✅ Your email has been sent successfully!";
+          responseEl.style.color = "green";
+          form.reset();
+        }, function(error) {
+          console.error("EmailJS error:", error);
+          responseEl.innerText = "❌ Failed to send email. Please try again.";
+          responseEl.style.color = "red";
+        })
+        .finally(() => {
+          submitBtn.disabled = false;
+        });
+    });
+  </script>
+
+  <script src="../js/main.js"></script>
+</body>
+</html>

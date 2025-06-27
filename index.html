@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>James Gichohi | Portfolio</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="icon" href="assets/images/favicon.png" type="image/x-icon" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-papNM3jR3PrxB1fLScHRMi16U/3gW04Rfqq+p9JUO6r1xru0Q9hX6E1V6Z6pT0aZT+cxUMMJo1ySpP3geS9gUg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body class="" style="background-color: var(--bg); color: var(--text); transition: background-color 0.3s, color 0.3s;">
+
+  <!-- Navbar -->
+  <header style="background-color: var(--card-bg);">
+    <nav>
+      <div class="logo">Tuonchi</div>
+      <ul>
+        <li><a href="index.html" class="active">Home</a></li>
+        <li><a href="pages/about.html">About</a></li>
+        <li><a href="pages/projects.html">Projects</a></li>
+        <li><a href="pages/contact.html">Contact</a></li>
+        <li><a href="#resume">Resume</a></li>
+      </ul>
+       <button id="theme-toggle" title="Toggle dark mode" style="background: var(--accent); border: none; color: white; font-size: 1rem; padding: 8px 12px; border-radius: 8px; cursor: pointer; transition: background 0.3s ease;">
+        <span id="theme-icon" style="font-size: 1.2rem;">🌓</span>
+      </button>
+    </nav>
+  </header>
+
+  <!-- HERO SECTION -->
+  <section class="hero reveal">
+    <p id="greeting-message" class="intro"></p>
+
+    <video class="avatar" autoplay muted loop playsinline>
+      <source src="assets/videos/avatar.mp4" type="video/mp4" />
+      <img src="assets/images/avatar.png" alt="Avatar" />
+    </video>
+
+    <h1>I'm <span>James Gichohi</span></h1>
+    <h2><span id="typing">Web Developer | Graphic Designer</span></h2>
+    <a href="assets/resume/resume.pdf" class="btn" download>📄 Download Resume</a>
+  </section>
+
+  <!-- FUN FACT BOX -->
+  <div class="fact-box reveal">
+    <p id="random-fact">"Creativity is intelligence having fun." – Einstein</p>
+  </div>
+
+  <!-- SKILLS -->
+  <section class="skills reveal" id="skills">
+    <h2>My Skills</h2>
+    <div class="skill-bars">
+      <div class="skill">
+        <label>HTML</label>
+        <div class="bar"><div class="fill" data-fill="90%"></div></div>
+      </div>
+      <div class="skill">
+        <label>CSS</label>
+        <div class="bar"><div class="fill" data-fill="85%"></div></div>
+      </div>
+      <div class="skill">
+        <label>JavaScript</label>
+        <div class="bar"><div class="fill" data-fill="75%"></div></div>
+      </div>
+      <div class="skill">
+        <label>Graphic Design</label>
+        <div class="bar"><div class="fill" data-fill="80%"></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RESUME -->
+  <section id="resume" class="reveal">
+    <h2 style="text-align: center;">My Resume</h2>
+    <iframe src="assets/resume/resume.pdf" width="100%" height="600px" style="border: none;"></iframe>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>© 2025 James Gichohi | Designed by Tuonchi</p>
+  </footer>
+
+  <button id="scrollTopBtn" title="Go to top">⬆</button>
+
+  <!-- JS Scripts -->
+  <script src="js/main.js"></script>
+  <script>
+    const greeting = document.getElementById("greeting-message");
+    const hour = new Date().getHours();
+    if (hour < 12) {
+      greeting.textContent = "Good morning, welcome to my portfolio!";
+    } else if (hour < 18) {
+      greeting.textContent = "Good afternoon, glad you're here!";
+    } else {
+      greeting.textContent = "Good evening, feel free to explore!";
+    }
+
+    const facts = [
+      '"Creativity is intelligence having fun." – Einstein',
+      '"Code is like humor. When you have to explain it, it’s bad." – Cory House',
+      '"Design is not just what it looks like and feels like. Design is how it works." – Steve Jobs',
+      '"First, solve the problem. Then, write the code." – John Johnson',
+      '"Simplicity is the soul of efficiency." – Austin Freeman'
+    ];
+    const factBox = document.getElementById("random-fact");
+    factBox.textContent = facts[Math.floor(Math.random() * facts.length)];
+
+    const toggleBtn = document.getElementById("theme-toggle");
+    const themeIcon = document.getElementById("theme-icon");
+    const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+    const storedTheme = localStorage.getItem("theme");
+
+    function updateIcon() {
+      if (document.body.classList.contains("dark")) {
+        themeIcon?.classList.remove("fa-moon");
+        themeIcon?.classList.add("fa-sun");
+      } else {
+        themeIcon?.classList.remove("fa-sun");
+        themeIcon?.classList.add("fa-moon");
+      }
+    }
+
+    if (storedTheme === "dark" || (!storedTheme && prefersDark)) {
+      document.body.classList.add("dark");
+    }
+
+    updateIcon();
+
+    toggleBtn?.addEventListener("click", () => {
+      document.body.classList.toggle("dark");
+      const isDark = document.body.classList.contains("dark");
+      localStorage.setItem("theme", isDark ? "dark" : "light");
+      updateIcon();
+    });
+  </script>
+</body>
+</html>
